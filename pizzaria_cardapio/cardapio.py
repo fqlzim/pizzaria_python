@@ -6,7 +6,9 @@ cardapio = {
     'Calabresa': 32.0,
     'Quatro Queijos': 35.0,
     'Frango com Catupiry': 36.0,
-    'Portuguesa': 34.0
+    'Portuguesa': 34.0,
+    'Chocolate' : 29.0,
+    'Chocolate Branco' : 29.0
 }
 
 pedido = []
@@ -18,22 +20,22 @@ def mostrar_cardapio():
 
 def adicionar_pizza():
     mostrar_cardapio()
-    escolha = input("Digite o número da pizza que deseja adicionar ao pedido:  ")
+    escolha = input("Por favor, adicione o número da pizza que deseja adicionar ao pedido:  ")
     try:
         escolha = int(escolha)
         if 1 <= escolha <= len(cardapio):
             pizza = list(cardapio.keys())[escolha - 1]
             pedido.append(pizza)
-            print(f"{pizza} adicionada ao pedido!")
+            print(f"{pizza} Obrigado, sua pizza foi adicionada ao pedido!")
         else:
-            print("Opção inválida.")
+            print("Ops, essa opção não se encontra em nosso cardápio.")
     except ValueError:
-        print("Por favor, digite um número válido.")
+        print("Por favor, digite um número que consta em nosso cardápio.")
 
 def ver_pedido():
     print("\n--- Seu Pedido ---")
     if not pedido:
-        print("Nenhuma pizza adicionada ainda.")
+        print("Nenhuma pizza foi escolhida no momento, que tal adicionar alguma?.")
     else:
         total = 0
         for pizza in pedido:
@@ -58,7 +60,7 @@ def finalizar_pedido():
     else:
         pagamento = "Não informada"
     print(f"\nForma de pagamento escolhida: {pagamento}")
-    print("\nPedido finalizado! Obrigado pela preferência.")
+    print("\nPedido finalizado! Obrigado pela preferência, volte sempre!!")
     exit()
 
 def menu():
@@ -78,7 +80,7 @@ def menu():
         elif opcao == '4':
             finalizar_pedido()
         else:
-            print("Opção inválida. Tente novamente.")
+            print("Ops, essa opção é inválida. Por favor tente novamente.")
 
 if __name__ == "__main__":
     print("""
