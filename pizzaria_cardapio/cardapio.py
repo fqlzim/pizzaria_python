@@ -12,6 +12,7 @@ cardapio = {
 }
 
 pedido = []
+entrega = {}
 
 def mostrar_cardapio():
     print("\n--- Cardápio de Pizzas ---")
@@ -44,8 +45,25 @@ def ver_pedido():
             total += preco
         print(f"Total: R$ {total:.2f}")
 
+def escolher_entrega():
+    print("\nVocê gostaria de:")
+    print("1. Retirar no balcão")
+    print("2. Receber em casa(Delivery)")
+    opcao = input("Digite a opção desejada:")
+    if opcao == '1':
+        entrega['tipo'] = 'Retirada no balcão'
+    elif opcao =='2':
+        endereco = input("Por favor, informe o endereço para entrega:")
+        entrega['tipo'] = 'Delivery'
+        entrega['endereco'] =  endereco
+    else:
+        print("Opção inválida. Considerando retirada no balcão por padrão")
+        entrega['tipo'] = 'Retirada no balcão'
+
 def finalizar_pedido():
     ver_pedido()
+    escolher_entrega()
+    
     print("\nEscolha a forma de pagamento:")
     print("1. Dinheiro")
     print("2. Cartão")
@@ -58,10 +76,13 @@ def finalizar_pedido():
     elif forma == '3':
         pagamento = "Pix"
     else:
-        pagamento = "Não informada"
+        pagamento = "Não informada"    
     print(f"\nForma de pagamento escolhida: {pagamento}")
-    print("\nPedido finalizado! Obrigado pela preferência, volte sempre!!")
-    exit()
+    print(f"Tipo de entrega:{entrega.get('tipo')}")
+    if entrega.get('tipo') == 'Delivery':
+        print(f"Endereço de entrega:{entrega.get('endereco')}")
+        print("\nPedido finalizado! Obriigado pela preferência, volte sempre!!")
+        exit()
 
 def menu():
     while True:
